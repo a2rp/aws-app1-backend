@@ -12,10 +12,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api/v1", routes);
 
 const _dirname = path.dirname("");
-const buildpath = path.join(_dirname, "../frontend/build");
+const buildpath = path.join(_dirname, "../aws-app1-frontend/build");
 app.use(express.static(buildpath));
-
-console.log(path.join(_dirname, "frontend", "build"))
 
 const PORT = process.env.PORT || 1198;
 app.listen(PORT, () => {
