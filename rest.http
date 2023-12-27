@@ -1,0 +1,5 @@
+### get a2rp
+GET http://localhost:1000/api/v1/a2rp
+
+
+
