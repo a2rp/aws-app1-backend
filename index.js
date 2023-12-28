@@ -11,9 +11,13 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/v1", routes);
 
-const _dirname = path.dirname("");
-const buildpath = path.join(_dirname, "../aws-app1-frontend/build");
+const ___dirname = path.dirname("");
+const buildpath = path.join(___dirname, "../aws-app1-frontend/build");
 app.use(express.static(buildpath));
+app.use(express.static(path.join(___dirname, "../aws-app1-frontend/build")));
+app.get("*", async (req, res) => {
+    res.sendFile(path.join(___dirname, "../aws-app1-frontend/build/index.html"));
+});
 
 const PORT = process.env.PORT || 1198;
 app.listen(PORT, () => {
