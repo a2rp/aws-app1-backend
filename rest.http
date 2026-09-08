@@ -1,5 +1,10 @@
-### get a2rp
-GET http://localhost:1000/api/v1/a2rp
+@baseUrl = http://localhost:1198
 
+### Health check
+GET {{baseUrl}}/health
 
+### Get A2RP information
+GET {{baseUrl}}/api/v1/a2rp
 
+### Verify API 404 response
+GET {{baseUrl}}/api/v1/unknown

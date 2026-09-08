@@ -1,25 +1,22 @@
-const express = require("express");
-const app = express();
-const cors = require("cors");
-const routes = require("./src/v1/routes");
-const path = require("path");
+const app = require("./src/app");
 
+const DEFAULT_PORT = 1198;
+const configuredPort = Number.parseInt(process.env.PORT, 10);
+const port = Number.isInteger(configuredPort) && configuredPort > 0 && configuredPort <= 65535
+    ? configuredPort
+    : DEFAULT_PORT;
 
-app.use(cors({ "origin": "*" }));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-app.use("/api/v1", routes);
-
-const ___dirname = path.dirname("");
-app.use(express.static("../aws-app1-frontend/build"));
-app.use(express.static(path.join(___dirname, "../aws-app1-frontend/build")));
-app.get("*", async (req, res) => {
-    res.sendFile(path.join(___dirname, "../aws-app1-frontend/build/index.html"));
+const server = app.listen(port, () => {
+    console.log(`Server running at http://127.0.0.1:${port}`);
 });
 
-const PORT = process.env.PORT || 1198;
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}: http://127.0.0.1:${PORT}`);
-});
+function shutdown(signal) {
+    console.log(`${signal} received. Shutting down gracefully.`);
+    server.close(() => process.exit(0));
+}
+
+process.on("SIGINT", () => shutdown("SIGINT"));
+process.on("SIGTERM", () => shutdown("SIGTERM"));
+
+module.exports = server;
 

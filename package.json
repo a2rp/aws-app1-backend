@@ -1,18 +1,24 @@
 {
     "name": "backend",
     "version": "1.0.0",
-    "description": "",
+    "description": "Express API and production server for the AWS App 1 frontend.",
     "main": "index.js",
     "scripts": {
         "start": "node index.js",
-        "start:dev": "nodemon index.js"
+        "dev": "nodemon index.js",
+        "start:dev": "npm run dev",
+        "check": "node --check index.js && node --check src/app.js && node --check src/v1/routes/index.js && node --check src/v1/controllers/a2rp.controller.js"
     },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
+    "keywords": [
+        "express",
+        "nodejs",
+        "rest-api"
+    ],
+    "author": "Ashish Ranjan",
+    "license": "MIT",
     "dependencies": {
         "cors": "^2.8.5",
-        "express": "^4.18.2"
+        "express": "^5.2.1"
     },
     "devDependencies": {
         "nodemon": "^3.0.2"
