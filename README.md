@@ -56,7 +56,6 @@ Set `CORS_ORIGIN` explicitly in production, for example `https://example.com,htt
 npm run check
 ```
 
-Manual HTTP requests are included in `rest.http`. See [DOCUMENTATION.md](./DOCUMENTATION.md) for architecture, behavior, and deployment guidance.
 
 ## License
 
